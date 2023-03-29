@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+
+    <link rel="stylesheet" href="bootstrap-5.2.1-dist/css/bootstrap.css">
+</head>
+<style>
+    * {
+    margin: 0;
+    padding: 0;
+    /* border: 1px solid black; */
+}
+section {
+    width: 70%;
+    height: 80vh;
+    /* border: 1px solid black; */
+}
+#btn1 {
+    width: 85%;
+    border: 0px;
+    border-radius: 20px;
+}
+#photo {
+    width: 90%;
+    height: 60%;
+}
+a {
+    text-decoration: none;
+}
+</style>
+<body>
+    <section class="shadow-lg mx-auto my-5 d-flex rounded">
+        <div class="w-50 h-75 mt-5">
+            <div class="shadow-lg w-75 h-100 mx-auto px-5 pb-5 rounded">
+                <div id="photo">
+
+                </div>
+                <h6 class="text-dark mt-5 mx-5 fw-bolder">No Account Yet?</h6>
+                  
+                    <h6 class="text-dark my-3 mx-5 fw-lighter">Fill in your info here!</h6>
+                    <a href="signup.html" class="px-5 border border-1 border-dark text-dark rounded-5 mx-3 py-2">Create Account</a>
+                   
+            </div>
+          
+        </div>
+        <div class="col-5 p-5 mx-auto">
+            <h1>Welcome Back</h1>
+            <p>Sign In Here</p>
+           
+            <input type="email" placeholder="Enter Your Email" class="form-control" id="emailInput"> <br>
+            <input type="password" placeholder="Enter Your Password" class="form-control" id="passwordInput"><br><br>
+
+            <button class="btn btn-success mb-2 w-100" onclick="signIn()">Sign In!</button> <br>
+         
+        </div>
+
+        </div>
+    </section>
+
+
+
+
+
+    <script>
+
+        function signIn() {
+            let email = document.getElementById('emailInput').value;
+            let password = document.getElementById('passwordInput').value;
+            
+            let users = JSON.parse(localStorage.getItem('users'));
+            //findIndex
+            //indexOf
+            //filter
+
+            let check = users.findIndex(u => u.email == email && u.password == password)
+            if (check<0) {
+                alert("se you dey whyne me ni?? Ogbeni Input Correct Details joor")
+            }else if (document.getElementById('emailInput').value==""||document.getElementById('passwordInput').value=="") {
+                   alert("fill out all fields")
+               } else {
+                localStorage.setItem('currentUser', email)
+                window.open('Dashboard.html','_self')
+                // alert("Your head dey dia, Welcome Big Boss")
+            }
+            document.getElementById('emailInput').value = ""
+            document.getElementById('passwordInput').value = ""
+        }
+    </script>
+</body>
+</html>

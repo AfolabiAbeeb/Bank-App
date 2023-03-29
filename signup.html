@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+
+    <link rel="stylesheet" href="bootstrap-5.2.1-dist/css/bootstrap.css">
+</head>
+<style>
+    * {
+    margin: 0;
+    padding: 0;
+    /* border: 1px solid black; */
+}
+section {
+    width: 70%;
+    height: 80vh;
+    /* border: 1px solid black; */
+}
+#btn1 {
+    width: 85%;
+    border: 0px;
+    border-radius: 20px;
+}
+#photo {
+    width: 90%;
+    height: 65%;
+}
+a {
+    text-decoration: none;
+}
+</style>
+<body>
+    <section class="shadow-lg mx-auto my-5 d-flex rounded">
+        <div class="w-50 h-75 mt-5">
+            <div class="shadow-lg w-75 h-100 mx-auto px-5 pb-5 rounded">
+                <div id="photo">
+
+                </div>
+                <h6 class="text-dark mt- mx-4 fw-bolder ">Already Have An Account?</h6>
+                  
+                    <h6 class="text-dark  my-3 mx-4 fw-lighter py-2">login with your personal info</h6>
+                    <a href="signin.html" class="px-5 border border-2 border-dark text-black ms-5 my-2 rounded-5 py-2 mx-auto">Sign In</a>
+            </div>
+          
+        </div>
+        <div class="col-5 p-5 mx-auto">
+            <h1>Create Account</h1>
+            <p>Get started by creating your new account</p>
+            <input type="text" placeholder="What should we call you?" class="form-control" id="nameInput"> <br>
+            <input type="email" placeholder="Enter Your Email" class="form-control" id="emailInput"> <br>
+            <input type="number" placeholder="Enter Your Phone Number Here" class="form-control" id="nameInput"> <br>
+            <input type="password" placeholder="Enter Your Password" class="form-control" id="passwordInput"><br><br>
+
+            <button class="btn btn-danger w-100" onclick="signUp()">SignUp!</button> <br>
+            <!-- <p>Already have an account?<a href="bankSIgnIn.html">Sign In!</a></p> -->
+            
+        </div>
+
+        </div>
+    </section>
+
+
+
+
+
+    <script>
+
+        var users = [];
+
+        function signUp(){
+            users.length = 0
+            let username = document.getElementById('nameInput').value;
+            let email = document.getElementById('emailInput').value;
+            let password = document.getElementById('passwordInput').value;
+
+            let accountNumber = Math.floor((Math.random() * 1000000000) + 1)
+            let usersObject = {username,email,password, accountNumber};
+
+            let existingUsers = JSON.parse(localStorage.getItem('users'));
+           
+            if(existingUsers){
+                users = existingUsers ;
+            }
+            document.getElementById('nameInput').value = ""
+            document.getElementById('emailInput').value = ""
+            document.getElementById('passwordInput').value = ""
+
+            users.push(usersObject);
+            localStorage.setItem ("users", JSON.stringify(users));
+           alert("congratulations! you can now sign In")
+           window.open('signin.html','_self')
+        }
+    </script>
+</body>
+</html>
